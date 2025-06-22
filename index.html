@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+    }
+    .love {
+      position: absolute;
+      color: #ff69b4;
+      font-family: sans-serif;
+      animation: fall linear;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+<script>
+  const words = ['I love you', '<3 Masha'];
+  function createLove() {
+    const love = document.createElement('div');
+    love.className = 'love';
+    love.textContent = words[Math.random() < 0.5 ? 0 : 1];
+    const spacing = 60;
+    const columns = Math.floor(window.innerWidth / spacing);
+    const col = Math.floor(Math.random() * columns);
+    love.style.left = (col * spacing) + 'px';
+    const size = Math.random() * 10 + 16;
+    love.style.fontSize = size + 'px';
+    love.style.animationDuration = (Math.random() * 2 + 3) + 's';
+    document.body.appendChild(love);
+    setTimeout(() => love.remove(), 5000);
+  }
+  setInterval(createLove, 50);
+</script>
+</body>
+</html>
